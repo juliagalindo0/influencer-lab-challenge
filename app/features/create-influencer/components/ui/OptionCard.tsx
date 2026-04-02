@@ -7,6 +7,7 @@ interface OptionCardProps {
   icon?: string;
   selected?: boolean;
   onClick?: () => void;
+  dashed?: boolean;
 }
 
 export default function OptionCard({
@@ -14,24 +15,26 @@ export default function OptionCard({
   icon,
   selected,
   onClick,
+  dashed,
 }: OptionCardProps) {
   return (
     <button
       onClick={onClick}
       className={`
-        w-full h-14 px-4 rounded-lg border flex items-center gap-3 transition
+        w-full h-12 px-3 rounded-lg flex items-center gap-3 transition shrink-0
+        ${dashed ? "border-2 border-dashed" : "border"}
         ${selected
           ? "border-purple-500 bg-purple-500/10"
-          : "border-white/10 hover:border-white/30 bg-transparent"
+          : "border-[#A29CB566] hover:border-[#A29CB5] bg-transparent"
         }
       `}
     >
       {icon && (
-        <Image src={icon} alt={label} width={24} height={24} />
+        <Image src={icon} alt={label} width={20} height={20} className="shrink-0" />
       )}
-      <span className="text-sm font-medium text-white">{label}</span>
+      <span className="text-sm font-medium text-white truncate">{label}</span>
       {selected && (
-        <span className="ml-auto">
+        <span className="ml-auto shrink-0">
           <svg className="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
           </svg>

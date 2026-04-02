@@ -32,7 +32,7 @@ export default function CreateLayout({ children }: CreateLayoutProps) {
 
         {/* Card com conteúdo do step */}
         <div className="flex-1 px-10 pb-4 overflow-hidden">
-          <div className="bg-[#0A0616] border border-[#A29CB566] rounded-2xl p-6 h-full overflow-y-auto">
+          <div className="bg-[#0A0616] border border-[#A29CB566] rounded-2xl p-6 h-full flex flex-col overflow-hidden">
             {children}
           </div>
         </div>
