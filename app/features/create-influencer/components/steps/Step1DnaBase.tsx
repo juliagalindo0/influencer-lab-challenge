@@ -103,7 +103,7 @@ export default function Step1DnaBase() {
                 <Image src={preview} alt="Preview" fill className="object-cover rounded-xl" />
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0A0616] px-3 py-2 flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-white truncate max-w-[120px]">{fileName}</p>
+                    <p className="text-xs text-white truncate max-w-30">{fileName}</p>
                     <p className="text-[10px] text-[#A29CB5]">{fileSize}</p>
                   </div>
                   <div className="flex gap-2">
@@ -187,7 +187,7 @@ export default function Step1DnaBase() {
       {/* Rodapé */}
       <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB5]/10 shrink-0">
         <button
-          className="w-[200px] h-9 rounded-sm text-white text-sm font-bold transition"
+          className="w-50 h-9 rounded-sm text-white text-sm font-bold transition"
           style={{
             border: "1px solid #4F1ED9",
             boxShadow: "0px 1px 2px 0px #0000001A",
@@ -197,7 +197,7 @@ export default function Step1DnaBase() {
         </button>
         <button
           onClick={nextStep}
-          className="w-[200px] h-9 rounded-sm text-white text-sm font-bold transition"
+          className="w-50 h-9 rounded-sm text-white text-sm font-bold transition"
           style={{
             background: "linear-gradient(0deg, #4F1ED9, #4F1ED9), linear-gradient(126.46deg, rgba(139, 92, 246, 0.9) 24.73%, rgba(59, 130, 246, 0.02) 121.42%)",
             boxShadow: "0px 1px 2px 0px #0000001A",
