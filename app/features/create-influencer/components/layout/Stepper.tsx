@@ -13,19 +13,19 @@ export default function Stepper() {
   const { step } = useInfluencer();
 
   return (
-    <div className="flex items-start w-full">
-      {steps.map((s, i) => {
-        const isCompleted = step > s.number;
-        const isActive = step === s.number;
+    <div className="flex flex-col w-full">
 
-        return (
-          <div key={s.number} className="flex items-start flex-1 last:flex-none">
+      {/* Linha com círculos */}
+      <div className="flex items-center w-full">
+        {steps.map((s, i) => {
+          const isCompleted = step > s.number;
+          const isActive = step === s.number;
 
-            {/* Círculo + Label */}
-            <div className="flex flex-col items-center gap-1 shrink-0">
+          return (
+            <div key={s.number} className="flex items-center flex-1 last:flex-none">
               <div
                 className={`
-                  w-7 h-7 rounded-full flex items-center justify-center transition-all border
+                  w-6 h-6 rounded-full flex items-center justify-center transition-all border shrink-0
                   ${isCompleted || isActive
                     ? "bg-white border-white"
                     : "bg-[#070410] border-[#A29CB5]"
@@ -39,19 +39,30 @@ export default function Stepper() {
                 )}
               </div>
 
+              {i < steps.length - 1 && (
+                <div className="h-px flex-1 bg-[#A29CB566]" />
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Labels abaixo */}
+      <div className="flex w-full mt-1">
+        {steps.map((s) => {
+          const isCompleted = step > s.number;
+          const isActive = step === s.number;
+
+          return (
+            <div key={s.number} className="flex-1 last:flex-none">
               <span className={`text-xs font-bold whitespace-nowrap ${isActive || isCompleted ? "text-[#EEEEFF]" : "text-[#A29CB5]"}`}>
                 {s.label}
               </span>
             </div>
+          );
+        })}
+      </div>
 
-            {/* Linha conectora entre os círculos */}
-            {i < steps.length - 1 && (
-              <div className="h-px flex-1 bg-[#A29CB566] mt-3.5" />
-            )}
-
-          </div>
-        );
-      })}
     </div>
   );
 }

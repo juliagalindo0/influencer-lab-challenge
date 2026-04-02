@@ -27,7 +27,9 @@ export default function CreateLayout({ children }: CreateLayoutProps) {
 
         {/* Stepper */}
         <div className="px-10 py-3 shrink-0">
-          <Stepper />
+          <div className="px-6">
+            <Stepper />
+          </div>
         </div>
 
         {/* Card com conteúdo do step */}
