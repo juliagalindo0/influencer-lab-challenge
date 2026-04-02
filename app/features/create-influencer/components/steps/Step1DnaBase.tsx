@@ -48,7 +48,7 @@ export default function Step1DnaBase() {
       <div className="flex flex-1 min-h-0 overflow-hidden gap-0">
 
         {/* Coluna esquerda — Upload */}
-        <div className="w-[40%] shrink-0 flex flex-col gap-2 pr-6">
+        <div className="w-[40%] shrink-0 flex flex-col gap-2 pr-25">
           <div>
             <p className="text-sm font-semibold text-white">
               Rosto Base / Referência Visual{" "}
@@ -68,7 +68,7 @@ export default function Step1DnaBase() {
               <Image src="/icons/paperclip.svg" alt="Anexar" width={12} height={12} />
               Anexar imagem
             </button>
-            <button className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[#A29CB566] text-xs text-[#A29CB5] hover:bg-white/5 transition">
+            <button className="flex-1 flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[#A29CB566] text-xs text-[#A29CB5] hover:bg-white/5 transition">
               <Image src="/icons/gallery.svg" alt="Banco" width={12} height={12} />
               Utilize nosso banco de imagens
             </button>
@@ -101,14 +101,24 @@ export default function Step1DnaBase() {
             {preview ? (
               <>
                 <Image src={preview} alt="Preview" fill className="object-cover rounded-xl" />
-                <div className="absolute bottom-0 left-0 right-0 bg-black/70 px-3 py-2 flex items-center justify-between">
+                <div className="absolute bottom-0 left-0 right-0 bg-[#0A0616] px-3 py-2 flex items-center justify-between">
                   <div>
                     <p className="text-xs text-white truncate max-w-[120px]">{fileName}</p>
                     <p className="text-[10px] text-[#A29CB5]">{fileSize}</p>
                   </div>
-                  <div className="flex gap-1">
-                    <button onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }} className="text-white/60 hover:text-white text-xs">✏️</button>
-                    <button onClick={(e) => { e.stopPropagation(); handleRemove(); }} className="text-red-400 hover:text-red-300 text-xs">🗑️</button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
+                      className="hover:opacity-70 transition"
+                    >
+                      <Image src="/icons/edit.svg" alt="Editar" width={12} height={12} />
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleRemove(); }}
+                      className="hover:opacity-70 transition"
+                    >
+                      <Image src="/icons/trash.svg" alt="Remover" width={12} height={12} />
+                    </button>
                   </div>
                 </div>
               </>
@@ -126,7 +136,7 @@ export default function Step1DnaBase() {
         <div className="w-px bg-[#A29CB566] self-stretch shrink-0" />
 
         {/* Coluna direita — Formulário */}
-        <div className="w-[60%] flex flex-col gap-3 pl-6 overflow-hidden">
+        <div className="w-[60%] flex flex-col gap-3 pl-25 overflow-hidden">
 
           {/* Nome */}
           <div className="flex flex-col gap-1">
@@ -175,9 +185,9 @@ export default function Step1DnaBase() {
       </div>
 
       {/* Rodapé */}
-      <div className="flex justify-between items-center pt-3 mt-3 border-t border-[#A29CB566] shrink-0">
+      <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB566] shrink-0">
         <button
-          className="w-[160px] h-10 rounded-sm text-white text-sm font-medium transition"
+          className="w-[200px] h-9 rounded-sm text-white text-sm font-medium transition"
           style={{
             border: "1px solid #4F1ED9",
             boxShadow: "0px 1px 2px 0px #0000001A",
@@ -187,7 +197,7 @@ export default function Step1DnaBase() {
         </button>
         <button
           onClick={nextStep}
-          className="w-[160px] h-10 rounded-sm text-white text-sm font-medium transition"
+          className="w-[200px] h-9 rounded-sm text-white text-sm font-medium transition"
           style={{
             background: "linear-gradient(0deg, #4F1ED9, #4F1ED9), linear-gradient(126.46deg, rgba(139, 92, 246, 0.9) 24.73%, rgba(59, 130, 246, 0.02) 121.42%)",
             boxShadow: "0px 1px 2px 0px #0000001A",
