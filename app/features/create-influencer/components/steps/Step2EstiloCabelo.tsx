@@ -69,7 +69,7 @@ export default function Step2EstiloCabelo() {
         </div>
 
         {/* Separador */}
-        <div className="w-px bg-[#A29CB566] self-stretch shrink-0" />
+        <div className="w-px bg-[#A29CB5]/10 self-stretch shrink-0" />
 
         {/* Coluna 2 — Cabelo */}
         <div className="flex-1 flex flex-col gap-2 px-14">
@@ -105,7 +105,7 @@ export default function Step2EstiloCabelo() {
         </div>
 
         {/* Separador */}
-        <div className="w-px bg-[#A29CB566] self-stretch shrink-0" />
+        <div className="w-px bg-[#A29CB5]/10 self-stretch shrink-0" />
 
         {/* Coluna 3 — Tipo de Corpo */}
         <div className="w-[25%] shrink-0 flex flex-col gap-2 pl-14">
@@ -127,7 +127,7 @@ export default function Step2EstiloCabelo() {
       </div>
 
       {/* Rodapé */}
-      <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB566] shrink-0">
+      <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB5]/10 shrink-0">
         <button
           onClick={prevStep}
           className="w-[200px] h-9 rounded-sm text-white text-sm font-medium transition"

@@ -133,7 +133,7 @@ export default function Step1DnaBase() {
         </div>
 
         {/* Separador vertical */}
-        <div className="w-px bg-[#A29CB566] self-stretch shrink-0" />
+        <div className="w-px bg-[#A29CB5]/10 self-stretch shrink-0" />
 
         {/* Coluna direita — Formulário */}
         <div className="w-[60%] flex flex-col gap-3 pl-25 overflow-hidden">
@@ -185,7 +185,7 @@ export default function Step1DnaBase() {
       </div>
 
       {/* Rodapé */}
-      <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB566] shrink-0">
+      <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB5]/10 shrink-0">
         <button
           className="w-[200px] h-9 rounded-sm text-white text-sm font-medium transition"
           style={{
