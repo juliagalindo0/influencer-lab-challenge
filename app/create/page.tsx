@@ -1,12 +1,13 @@
 "use client";
 
 import { InfluencerProvider, useInfluencer } from "@/app/features/create-influencer/context/InfluencerContext";
+import CreateLayout from "@/app/features/create-influencer/components/layout/CreateLayout";
 
 function StepContent() {
   const { step } = useInfluencer();
 
   return (
-    <div className="text-white p-8">
+    <div className="text-white">
       <p>Step atual: {step}</p>
     </div>
   );
@@ -15,7 +16,9 @@ function StepContent() {
 export default function CreatePage() {
   return (
     <InfluencerProvider>
-      <StepContent />
+      <CreateLayout>
+        <StepContent />
+      </CreateLayout>
     </InfluencerProvider>
   );
 }
