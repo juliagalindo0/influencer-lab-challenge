@@ -52,7 +52,7 @@ export default function Step2EstiloCabelo() {
       <div className="flex flex-1 min-h-0 overflow-hidden gap-0">
 
         {/* Coluna 1 — Cor dos Olhos */}
-        <div className="w-[28%] shrink-0 flex flex-col gap-2 pr-10">
+        <div className="w-[25%] shrink-0 flex flex-col gap-2 pr-14">
           <h3 className="text-sm font-semibold text-white">1. Cor dos Olhos</h3>
           <div className="flex flex-col gap-2">
             {eyeColors.map((item) => (
@@ -72,7 +72,7 @@ export default function Step2EstiloCabelo() {
         <div className="w-px bg-[#A29CB566] self-stretch shrink-0" />
 
         {/* Coluna 2 — Cabelo */}
-        <div className="flex-1 flex flex-col gap-2 px-10">
+        <div className="flex-1 flex flex-col gap-2 px-14">
           <h3 className="text-sm font-semibold text-white">2. Cabelo</h3>
 
           <p className="text-xs text-[#A29CB5]">Cor dos fios</p>
@@ -108,7 +108,7 @@ export default function Step2EstiloCabelo() {
         <div className="w-px bg-[#A29CB566] self-stretch shrink-0" />
 
         {/* Coluna 3 — Tipo de Corpo */}
-        <div className="w-[22%] shrink-0 flex flex-col gap-2 pl-10">
+        <div className="w-[25%] shrink-0 flex flex-col gap-2 pl-14">
           <h3 className="text-sm font-semibold text-white">3. Tipo de corpo</h3>
           <div className="flex flex-col gap-2">
             {bodyTypes.map((item) => (
@@ -127,10 +127,10 @@ export default function Step2EstiloCabelo() {
       </div>
 
       {/* Rodapé */}
-      <div className="flex justify-between items-center pt-3 mt-3 border-t border-[#A29CB566] shrink-0">
+      <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB566] shrink-0">
         <button
           onClick={prevStep}
-          className="w-[160px] h-10 rounded-sm text-white text-sm font-medium transition"
+          className="w-[200px] h-9 rounded-sm text-white text-sm font-medium transition"
           style={{
             border: "1px solid #4F1ED9",
             boxShadow: "0px 1px 2px 0px #0000001A",
@@ -140,7 +140,7 @@ export default function Step2EstiloCabelo() {
         </button>
         <button
           onClick={nextStep}
-          className="w-[160px] h-10 rounded-sm text-white text-sm font-medium transition"
+          className="w-[200px] h-9 rounded-sm text-white text-sm font-medium transition"
           style={{
             background: "linear-gradient(0deg, #4F1ED9, #4F1ED9), linear-gradient(126.46deg, rgba(139, 92, 246, 0.9) 24.73%, rgba(59, 130, 246, 0.02) 121.42%)",
             boxShadow: "0px 1px 2px 0px #0000001A",
@@ -174,7 +174,7 @@ function ColorCard({
         w-full h-12 px-3 rounded-lg flex items-center gap-3 transition shrink-0
         ${dashed ? "border-2 border-dashed" : "border"}
         ${selected
-          ? "border-purple-500 bg-purple-500/10"
+          ? "border-purple-500 bg-transparent"
           : "border-[#A29CB566] hover:border-[#A29CB5] bg-transparent"
         }
       `}
@@ -187,13 +187,13 @@ function ColorCard({
       ) : (
         <span className="w-5 h-5 flex items-center justify-center text-white/50 shrink-0">+</span>
       )}
-      <span className="text-sm font-medium text-white truncate">{label}</span>
-      {selected && (
-        <span className="ml-auto shrink-0">
-          <svg className="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
+      <span className="flex-1 text-sm font-medium text-white text-center">{label}</span>
+      {selected ? (
+        <svg className="w-4 h-4 text-purple-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+        </svg>
+      ) : (
+        <span className="w-4 shrink-0" />
       )}
     </button>
   );
