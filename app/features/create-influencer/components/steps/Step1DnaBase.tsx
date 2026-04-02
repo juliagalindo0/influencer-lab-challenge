@@ -60,16 +60,20 @@ export default function Step1DnaBase() {
           </div>
 
           {/* Botões */}
-          <div className="flex gap-2">
+          <div className="flex gap-2" role="group" aria-label="Opções de upload de imagem">
             <button
               onClick={() => fileInputRef.current?.click()}
+              aria-label="Anexar imagem do computador"
               className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[#A29CB566] text-xs text-white hover:bg-white/5 transition"
             >
-              <Image src="/icons/paperclip.svg" alt="Anexar" width={12} height={12} />
+              <Image src="/icons/paperclip.svg" alt="" width={12} height={12} aria-hidden="true" />
               Anexar imagem
             </button>
-            <button className="flex-1 flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[#A29CB566] text-xs text-[#A29CB5] hover:bg-white/5 transition">
-              <Image src="/icons/gallery.svg" alt="Banco" width={12} height={12} />
+            <button
+              className="flex-1 flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[#A29CB566] text-xs text-[#A29CB5] hover:bg-white/5 transition"
+              aria-label="Utilizar banco de imagens"
+            >
+              <Image src="/icons/gallery.svg" alt="" width={12} height={12} aria-hidden="true" />
               Utilize nosso banco de imagens
             </button>
           </div>
@@ -79,6 +83,7 @@ export default function Step1DnaBase() {
             type="file"
             accept=".png,.jpg,.jpeg"
             className="hidden"
+            aria-label="Selecionar arquivo de imagem"
             onChange={(e) => {
               const file = e.target.files?.[0];
               if (file) handleFile(file);
@@ -87,10 +92,14 @@ export default function Step1DnaBase() {
 
           {/* Dropzone */}
           <div
+            role="button"
+            tabIndex={0}
+            aria-label={preview ? "Imagem selecionada. Clique para trocar" : "Área de upload. Clique para selecionar ou arraste uma imagem"}
             onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
             onDragLeave={() => setDragging(false)}
             onDrop={handleDrop}
             onClick={() => !preview && fileInputRef.current?.click()}
+            onKeyDown={(e) => e.key === "Enter" && !preview && fileInputRef.current?.click()}
             className={`
               relative flex-1 rounded-xl border-2 border-dashed
               flex flex-col items-center justify-center
@@ -100,7 +109,7 @@ export default function Step1DnaBase() {
           >
             {preview ? (
               <>
-                <Image src={preview} alt="Preview" fill className="object-cover rounded-xl" />
+                <Image src={preview} alt="Imagem de referência selecionada" fill className="object-cover rounded-xl" />
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0A0616] px-3 py-2 flex items-center justify-between">
                   <div>
                     <p className="text-xs text-white truncate max-w-30">{fileName}</p>
@@ -110,21 +119,23 @@ export default function Step1DnaBase() {
                     <button
                       onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
                       className="hover:opacity-70 transition"
+                      aria-label="Trocar imagem"
                     >
-                      <Image src="/icons/edit.svg" alt="Editar" width={12} height={12} />
+                      <Image src="/icons/edit.svg" alt="" width={12} height={12} aria-hidden="true" />
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleRemove(); }}
                       className="hover:opacity-70 transition"
+                      aria-label="Remover imagem"
                     >
-                      <Image src="/icons/trash.svg" alt="Remover" width={12} height={12} />
+                      <Image src="/icons/trash.svg" alt="" width={12} height={12} aria-hidden="true" />
                     </button>
                   </div>
                 </div>
               </>
             ) : (
-              <div className="flex flex-col items-center gap-2 text-[#A29CB5] px-3 text-center pointer-events-none">
-                <Image src="/icons/upload.svg" alt="Upload" width={24} height={24} />
+              <div className="flex flex-col items-center gap-2 text-[#A29CB5] px-3 text-center pointer-events-none" aria-hidden="true">
+                <Image src="/icons/upload.svg" alt="" width={24} height={24} aria-hidden="true" />
                 <p className="text-xs">Clique para fazer upload ou arraste a imagem</p>
                 <p className="text-[10px]">Formatos suportados: PNG, JPG (Até 5MB)</p>
               </div>
@@ -133,53 +144,57 @@ export default function Step1DnaBase() {
         </div>
 
         {/* Separador vertical */}
-        <div className="w-px bg-[#A29CB5]/10 self-stretch shrink-0" />
+        <div className="w-px bg-[#A29CB5]/10 self-stretch shrink-0" aria-hidden="true" />
 
         {/* Coluna direita — Formulário */}
         <div className="w-[60%] flex flex-col gap-3 pl-25 overflow-hidden">
 
           {/* Nome */}
           <div className="flex flex-col gap-1">
-            <span className="text-sm font-semibold text-white">1. Nome do Influenciador</span>
+            <label htmlFor="influencer-name" className="text-sm font-semibold text-white">
+              1. Nome do Influenciador
+            </label>
             <input
+              id="influencer-name"
               type="text"
               placeholder="John Doe"
               value={data.name}
               onChange={(e) => updateField("name", e.target.value)}
+              aria-label="Nome do influenciador"
               className="w-full h-12 px-3 py-1 rounded-sm border border-[#A29CB566] bg-transparent focus:border-purple-500 outline-none text-white placeholder:text-[#A29CB5] transition text-sm"
             />
           </div>
 
           {/* Gênero */}
-          <div className="flex flex-col gap-1">
-            <span className="text-sm font-semibold text-white">2. Qual o gênero?</span>
-            <div className="grid grid-cols-2 gap-3">
+          <fieldset className="flex flex-col gap-1">
+            <legend className="text-sm font-semibold text-white mb-1">2. Qual o gênero?</legend>
+            <div className="grid grid-cols-2 gap-3" role="radiogroup" aria-label="Selecione o gênero">
               <OptionCard label="Masculino" icon="/icons/GenderMale.svg" selected={data.gender === "male"} onClick={() => updateField("gender", "male")} />
               <OptionCard label="Feminino" icon="/icons/GenderFemale.svg" selected={data.gender === "female"} onClick={() => updateField("gender", "female")} />
             </div>
-          </div>
+          </fieldset>
 
           {/* Faixa etária */}
-          <div className="flex flex-col gap-1">
-            <span className="text-sm font-semibold text-white">3. Qual a faixa etária?</span>
-            <div className="grid grid-cols-2 gap-3">
+          <fieldset className="flex flex-col gap-1">
+            <legend className="text-sm font-semibold text-white mb-1">3. Qual a faixa etária?</legend>
+            <div className="grid grid-cols-2 gap-3" role="radiogroup" aria-label="Selecione a faixa etária">
               <OptionCard label="Jovem (18-25)" icon="/icons/jovem.svg" selected={data.ageRange === "young"} onClick={() => updateField("ageRange", "young")} />
               <OptionCard label="Adulto (26-40)" icon="/icons/adulto.svg" selected={data.ageRange === "adult"} onClick={() => updateField("ageRange", "adult")} />
               <OptionCard label="Maduro (41-60)" icon="/icons/maduro.svg" selected={data.ageRange === "mature"} onClick={() => updateField("ageRange", "mature")} />
               <OptionCard label="Sênior (61+)" icon="/icons/senior.svg" selected={data.ageRange === "senior"} onClick={() => updateField("ageRange", "senior")} />
             </div>
-          </div>
+          </fieldset>
 
           {/* Etnia */}
-          <div className="flex flex-col gap-1">
-            <span className="text-sm font-semibold text-white">4. Qual a etnia / fenótipo?</span>
-            <div className="grid grid-cols-2 gap-3">
+          <fieldset className="flex flex-col gap-1">
+            <legend className="text-sm font-semibold text-white mb-1">4. Qual a etnia / fenótipo?</legend>
+            <div className="grid grid-cols-2 gap-3" role="radiogroup" aria-label="Selecione a etnia">
               <OptionCard label="Branca" icon="/icons/branca.svg" selected={data.ethnicity === "white"} onClick={() => updateField("ethnicity", "white")} />
               <OptionCard label="Asiática" icon="/icons/asiatica.svg" selected={data.ethnicity === "asian"} onClick={() => updateField("ethnicity", "asian")} />
               <OptionCard label="Negra" icon="/icons/negra.svg" selected={data.ethnicity === "black"} onClick={() => updateField("ethnicity", "black")} />
               <OptionCard label="Personalizar" icon="/icons/plus.svg" dashed selected={data.ethnicity === "custom"} onClick={() => updateField("ethnicity", "custom")} />
             </div>
-          </div>
+          </fieldset>
 
         </div>
       </div>
@@ -187,6 +202,7 @@ export default function Step1DnaBase() {
       {/* Rodapé */}
       <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB5]/10 shrink-0">
         <button
+          aria-label="Cancelar criação de influencer"
           className="w-50 h-9 rounded-sm text-white text-sm font-bold transition"
           style={{
             border: "1px solid #4F1ED9",
@@ -197,6 +213,7 @@ export default function Step1DnaBase() {
         </button>
         <button
           onClick={nextStep}
+          aria-label="Avançar para próximo passo"
           className="w-50 h-9 rounded-sm text-white text-sm font-bold transition"
           style={{
             background: "linear-gradient(0deg, #4F1ED9, #4F1ED9), linear-gradient(126.46deg, rgba(139, 92, 246, 0.9) 24.73%, rgba(59, 130, 246, 0.02) 121.42%)",

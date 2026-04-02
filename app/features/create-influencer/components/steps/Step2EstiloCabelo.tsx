@@ -53,8 +53,8 @@ export default function Step2EstiloCabelo() {
 
         {/* Coluna 1 — Cor dos Olhos */}
         <div className="w-[25%] shrink-0 flex flex-col gap-2 pr-14">
-          <h3 className="text-sm font-semibold text-white">1. Cor dos Olhos</h3>
-          <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-semibold text-white" id="eye-color-label">1. Cor dos Olhos</h3>
+          <div className="flex flex-col gap-2" role="radiogroup" aria-labelledby="eye-color-label">
             {eyeColors.map((item) => (
               <ColorCard
                 key={item.value}
@@ -69,14 +69,14 @@ export default function Step2EstiloCabelo() {
         </div>
 
         {/* Separador */}
-        <div className="w-px bg-[#A29CB5]/10 self-stretch shrink-0" />
+        <div className="w-px bg-[#A29CB5]/10 self-stretch shrink-0" aria-hidden="true" />
 
         {/* Coluna 2 — Cabelo */}
         <div className="flex-1 flex flex-col gap-2 px-14">
           <h3 className="text-sm font-semibold text-white">2. Cabelo</h3>
 
-          <p className="text-xs text-[#A29CB5]">Cor dos fios</p>
-          <div className="grid grid-cols-2 gap-2">
+          <p className="text-xs text-[#A29CB5]" id="hair-color-label">Cor dos fios</p>
+          <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-labelledby="hair-color-label">
             {hairColors.map((item) => (
               <ColorCard
                 key={item.value}
@@ -89,8 +89,8 @@ export default function Step2EstiloCabelo() {
             ))}
           </div>
 
-          <p className="text-xs text-[#A29CB5] mt-1">Estilo / Penteado</p>
-          <div className="grid grid-cols-2 gap-2">
+          <p className="text-xs text-[#A29CB5] mt-1" id="hair-style-label">Estilo / Penteado</p>
+          <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-labelledby="hair-style-label">
             {hairStyles.map((item) => (
               <OptionCard
                 key={item.value}
@@ -105,12 +105,12 @@ export default function Step2EstiloCabelo() {
         </div>
 
         {/* Separador */}
-        <div className="w-px bg-[#A29CB5]/10 self-stretch shrink-0" />
+        <div className="w-px bg-[#A29CB5]/10 self-stretch shrink-0" aria-hidden="true" />
 
         {/* Coluna 3 — Tipo de Corpo */}
         <div className="w-[25%] shrink-0 flex flex-col gap-2 pl-14">
-          <h3 className="text-sm font-semibold text-white">3. Tipo de corpo</h3>
-          <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-semibold text-white" id="body-type-label">3. Tipo de corpo</h3>
+          <div className="flex flex-col gap-2" role="radiogroup" aria-labelledby="body-type-label">
             {bodyTypes.map((item) => (
               <OptionCard
                 key={item.value}
@@ -130,6 +130,7 @@ export default function Step2EstiloCabelo() {
       <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB5]/10 shrink-0">
         <button
           onClick={prevStep}
+          aria-label="Voltar para o passo anterior"
           className="w-50 h-9 rounded-sm text-white text-sm font-bold transition"
           style={{
             border: "1px solid #4F1ED9",
@@ -139,7 +140,9 @@ export default function Step2EstiloCabelo() {
           ← Voltar
         </button>
         <button
-          onClick={nextStep}
+          onClick={() => {}}
+          aria-label="Próximo passo indisponível"
+          disabled
           className="w-50 h-9 rounded-sm text-white text-sm font-bold transition"
           style={{
             background: "linear-gradient(0deg, #4F1ED9, #4F1ED9), linear-gradient(126.46deg, rgba(139, 92, 246, 0.9) 24.73%, rgba(59, 130, 246, 0.02) 121.42%)",
@@ -170,6 +173,9 @@ function ColorCard({
   return (
     <button
       onClick={onClick}
+      role="radio"
+      aria-checked={selected}
+      aria-label={color ? `Cor ${label}` : label}
       className={`
         w-full h-12 px-3 rounded-lg flex items-center gap-3 transition shrink-0
         ${dashed ? "border-2 border-dashed" : "border"}
@@ -183,17 +189,18 @@ function ColorCard({
         <span
           className="w-5 h-5 rounded-full shrink-0 border border-white/20"
           style={{ backgroundColor: color }}
+          aria-hidden="true"
         />
       ) : (
-        <span className="w-5 h-5 flex items-center justify-center text-white/50 shrink-0">+</span>
+        <span className="w-5 h-5 flex items-center justify-center text-white/50 shrink-0" aria-hidden="true">+</span>
       )}
       <span className="flex-1 text-sm font-bold text-white text-center">{label}</span>
       {selected ? (
-        <svg className="w-4 h-4 text-purple-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="w-4 h-4 text-purple-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
         </svg>
       ) : (
-        <span className="w-4 shrink-0" />
+        <span className="w-4 shrink-0" aria-hidden="true" />
       )}
     </button>
   );
