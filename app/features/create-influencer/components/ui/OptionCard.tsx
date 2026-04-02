@@ -8,6 +8,7 @@ interface OptionCardProps {
   selected?: boolean;
   onClick?: () => void;
   dashed?: boolean;
+  tall?: boolean;
 }
 
 export default function OptionCard({
@@ -16,12 +17,14 @@ export default function OptionCard({
   selected,
   onClick,
   dashed,
+  tall,
 }: OptionCardProps) {
   return (
     <button
       onClick={onClick}
       className={`
-        w-full h-12 px-3 rounded-lg flex items-center gap-3 transition shrink-0
+        w-full px-3 rounded-lg flex items-center gap-3 transition shrink-0
+        ${tall ? "h-16" : "h-12"}
         ${dashed ? "border-2 border-dashed" : "border"}
         ${selected
           ? "border-purple-500 bg-purple-500/10"
@@ -31,6 +34,9 @@ export default function OptionCard({
     >
       {icon && (
         <Image src={icon} alt={label} width={20} height={20} className="shrink-0" />
+      )}
+      {!icon && dashed && (
+        <span className="text-white/50 shrink-0">+</span>
       )}
       <span className="text-sm font-medium text-white truncate">{label}</span>
       {selected && (
