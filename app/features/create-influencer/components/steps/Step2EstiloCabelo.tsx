@@ -130,7 +130,7 @@ export default function Step2EstiloCabelo() {
       <div className="flex justify-between items-center pt-4 mt-4 border-t border-[#A29CB5]/10 shrink-0">
         <button
           onClick={prevStep}
-          className="w-[200px] h-9 rounded-sm text-white text-sm font-medium transition"
+          className="w-[200px] h-9 rounded-sm text-white text-sm font-bold transition"
           style={{
             border: "1px solid #4F1ED9",
             boxShadow: "0px 1px 2px 0px #0000001A",
@@ -140,7 +140,7 @@ export default function Step2EstiloCabelo() {
         </button>
         <button
           onClick={nextStep}
-          className="w-[200px] h-9 rounded-sm text-white text-sm font-medium transition"
+          className="w-[200px] h-9 rounded-sm text-white text-sm font-bold transition"
           style={{
             background: "linear-gradient(0deg, #4F1ED9, #4F1ED9), linear-gradient(126.46deg, rgba(139, 92, 246, 0.9) 24.73%, rgba(59, 130, 246, 0.02) 121.42%)",
             boxShadow: "0px 1px 2px 0px #0000001A",
@@ -187,7 +187,7 @@ function ColorCard({
       ) : (
         <span className="w-5 h-5 flex items-center justify-center text-white/50 shrink-0">+</span>
       )}
-      <span className="flex-1 text-sm font-medium text-white text-center">{label}</span>
+      <span className="flex-1 text-sm font-bold text-white text-center">{label}</span>
       {selected ? (
         <svg className="w-4 h-4 text-purple-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />

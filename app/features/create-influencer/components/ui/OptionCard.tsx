@@ -41,7 +41,7 @@ export default function OptionCard({
       )}
 
       {/* Label centralizado no espaço restante */}
-      <span className="flex-1 text-sm font-medium text-white text-center">
+      <span className="flex-1 text-sm font-bold text-white text-center">
         {label}
       </span>
 
